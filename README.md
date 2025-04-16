@@ -21,6 +21,8 @@ Starter Kit for building modern RESTful APIs with scalable 🏗️, modular 🧩
 - ❤️ Health Check & Monitoring
 - 🐂 Asynchronous Task Handling (Bull Queue)
 - 📥 Upload File Handlers
+- 🔁 Graceful Shutdown
+- 🎛️ Request Profiling
 
 ---
 

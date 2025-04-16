@@ -23,7 +23,6 @@ if (isRedisEnabled) {
   taskQueue.process(async (job) => {
     console.log(`Processing job ${job.id}:`, job.data);
 
-    // Task simulation
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     console.log(`Completed job ${job.id}`);
@@ -33,7 +32,6 @@ if (isRedisEnabled) {
   console.log('Redis is disabled. Bull queue will not be used.');
 }
 
-// Add tasks to the queue
 const addTaskToQueue = async (taskData) => {
   if (!isRedisEnabled) {
     console.log('Redis is disabled. Task not added to queue.');
@@ -50,7 +48,22 @@ const addTaskToQueue = async (taskData) => {
   }
 };
 
+const closeQueue = async () => {
+  if (isRedisEnabled && taskQueue) {
+    console.log('Closing Bull task queue...');
+    await taskQueue.close();
+    console.log('✅ Bull queue closed.');
+  }
+
+  if (redisClient) {
+    console.log('Closing Redis client...');
+    await redisClient.quit();
+    console.log('✅ Redis client closed.');
+  }
+};
+
 module.exports = {
   taskQueue,
   addTaskToQueue,
+  closeQueue,
 };
