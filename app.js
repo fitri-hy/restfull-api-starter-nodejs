@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const expressStatusMonitor = require('express-status-monitor');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
@@ -17,6 +18,8 @@ app.use(expressStatusMonitor(monitorConfig));
 app.use(morgan('dev'));
 app.use(...securityMiddleware);
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 const apiRoutes = require('./src/routes/api.route');

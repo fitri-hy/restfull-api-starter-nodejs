@@ -20,6 +20,7 @@ Starter Kit for building modern RESTful APIs with scalable 🏗️, modular 🧩
 - ⚡ Redis Caching
 - ❤️ Health Check & Monitoring
 - 🐂 Asynchronous Task Handling (Bull Queue)
+- 📥 Upload File Handlers
 
 ---
 
@@ -165,6 +166,49 @@ GET http://localhost:5000/api/v1/users
     "email": "johndoe@example.com"
   }
 ]
+```
+
+---
+
+## File Upload
+#### Endpoint
+
+```
+POST http://localhost:5000/api/v1/upload/:folderName
+
+Default Location: public/uploads
+```
+
+#### Header Request (If using ApiKey)
+
+| Key             | Value                           |
+|:----------------|:--------------------------------|
+| x-api-key       | my_secret_api_key               |
+
+
+#### Body Request (form-data)
+
+| Key           | Type		| Value                    |
+|:--------------|:----------|:-------------------------|
+| file       	| file		| Select File         |
+
+
+#### Response
+
+```
+{
+    "message": "File uploaded successfully",
+    "file": {
+        "fieldname": "file",
+        "originalname": "your-image.jpeg",
+        "encoding": "7bit",
+        "mimetype": "image/jpeg",
+        "destination": "public/uploads/",
+        "filename": "1744786296980-815431101.jpeg",
+        "path": "public\\uploads\\1744786296980-815431101.jpeg",
+        "size": 582884
+    }
+}
 ```
 
 ---
