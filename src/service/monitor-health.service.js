@@ -26,19 +26,5 @@ module.exports.monitorConfig = {
         responseTime: true,
         rps: true,
         statusCodes: true
-    },
-    healthChecks: [
-        {
-            protocol: 'http',
-            host: 'localhost',
-            path: '/admin/health/ex1',  // Path for the first health check
-            port: '3000'                // Port for the first health check
-        },
-        {
-            protocol: 'http',
-            host: 'localhost',
-            path: '/admin/health/ex2',  // Path for the second health check
-            port: '3000'                // Port for the second health check
-        }
-    ]
+    }
 };

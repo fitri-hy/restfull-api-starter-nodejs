@@ -1,5 +1,4 @@
 const { Sequelize } = require('sequelize');
-require('dotenv').config();
 
 const dbDialect = process.env.DB || 'mysql';
 
