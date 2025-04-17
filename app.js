@@ -13,6 +13,7 @@ const rateLimitMiddleware = require('./src/middlewares/rateLimit.middleware');
 const compressionMiddleware = require('./src/middlewares/compression.middleware');
 const { responseTimeMiddleware, sqlQueryLoggingMiddleware } = require('./src/middlewares/profiling.middleware');
 const anomalyDetectionMiddleware = require('./src/middlewares/anomalyDetection.middleware');
+const webhook = require('./src/middlewares/webhook.middleware');
 
 const app = express();
 app.use(compressionMiddleware)
@@ -26,6 +27,7 @@ app.use(...securityMiddleware);
 app.use(anomalyDetectionMiddleware)
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(webhook);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Profiling Middleware (in development only)

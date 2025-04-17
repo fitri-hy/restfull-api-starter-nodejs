@@ -25,6 +25,7 @@ Starter Kit for building modern RESTful APIs with scalable 🏗️, modular 🧩
 - 🎛️ Request Profiling
 - 🔒 HTTP Compression
 - 🚨 Anomaly Detection
+- 🌐 Webhook
 
 ---
 
