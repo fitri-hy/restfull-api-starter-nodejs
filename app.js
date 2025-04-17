@@ -12,9 +12,10 @@ const apiKeyMiddleware = require('./src/middlewares/apiKey.middleware');
 const rateLimitMiddleware = require('./src/middlewares/rateLimit.middleware');
 const compressionMiddleware = require('./src/middlewares/compression.middleware');
 const { responseTimeMiddleware, sqlQueryLoggingMiddleware } = require('./src/middlewares/profiling.middleware');
+const anomalyDetectionMiddleware = require('./src/middlewares/anomalyDetection.middleware');
 
 const app = express();
-app.use(compressionMiddleware());
+app.use(compressionMiddleware)
 
 // Health Check & Monitoring
 app.use(expressStatusMonitor(monitorConfig));
@@ -22,6 +23,7 @@ app.use(expressStatusMonitor(monitorConfig));
 // Middleware
 app.use(morgan('dev'));
 app.use(...securityMiddleware);
+app.use(anomalyDetectionMiddleware)
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));

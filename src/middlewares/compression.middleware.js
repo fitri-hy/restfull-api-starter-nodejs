@@ -1,45 +1,32 @@
 const compression = require('compression');
-const brotli = require('brotli');
 
-const compressionMiddleware = () => {
-    return (req, res, next) => {
-        const compressionEnabled = process.env.COMPRESSION_ENABLE === 'true';
-        
-        if (!compressionEnabled) {
-            return next();
-        }
+const COMPRESSION_ENABLE = process.env.COMPRESSION_ENABLE === 'true';
+const COMPRESSION_THRESHOLD = parseInt(process.env.COMPRESSION_THRESHOLD, 10) || 1024;
+const COMPRESSION_LEVEL = parseInt(process.env.COMPRESSION_LEVEL, 10) || 6;
 
-        const acceptEncoding = req.headers['accept-encoding'] || '';
-        
-        if (!res.getHeader('Content-Type')) {
-            res.setHeader('Content-Type', 'text/html; charset=UTF-8');
-        }
+console.log(`Compression Enabled: ${COMPRESSION_ENABLE}`);
 
-        const threshold = parseInt(process.env.COMPRESSION_THRESHOLD) || 512;
-
-        if (acceptEncoding.includes('br')) {
-            res.setHeader('Content-Encoding', 'br');
-            res.setHeader('Vary', 'Accept-Encoding');
-
-            const originalSend = res.send;
-            res.send = (body) => {
-                const bufferBody = Buffer.isBuffer(body) ? body : Buffer.from(body);
-
-                const compressedBody = brotli.compress(bufferBody);
-                res.setHeader('Content-Length', compressedBody.length);
-                res.send = originalSend;
-                res.send(compressedBody);
-            };
-            return next();
-        }
-
-        return compression({
-            threshold: threshold,
-            filter: (req, res) => {
-                return true;
-            }
-        })(req, res, next);
-    };
+const compressionMiddleware = COMPRESSION_ENABLE ? compression({
+    threshold: COMPRESSION_THRESHOLD,
+    filter: (req, res) => {
+        return req.headers['accept-encoding'] && req.headers['accept-encoding'].includes('gzip');
+    },
+    level: COMPRESSION_LEVEL
+}) : (req, res, next) => {
+    next();
 };
 
-module.exports = compressionMiddleware;
+const enhancedCompressionMiddleware = (req, res, next) => {
+    const startTime = Date.now();
+
+    try {
+        compressionMiddleware(req, res, () => {
+            const duration = Date.now() - startTime;
+            next();
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
+module.exports = enhancedCompressionMiddleware;

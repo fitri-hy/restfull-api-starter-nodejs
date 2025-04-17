@@ -23,7 +23,8 @@ Starter Kit for building modern RESTful APIs with scalable 🏗️, modular 🧩
 - 📥 Upload File Handlers
 - 🔁 Graceful Shutdown
 - 🎛️ Request Profiling
-- 🔒 HTTP Compression (gzip/brotli)
+- 🔒 HTTP Compression
+- 🚨 Anomaly Detection
 
 ---
 
