@@ -41,6 +41,46 @@ npm run dev
 
 ---
 
+## 🧾 Configuration `.env` Variables
+
+| Variable             | Function                                                                |
+|----------------------|-------------------------------------------------------------------------|
+| HOST                 | Server host address                                                     |
+| PORT                 | Port number the application listens on                                  |
+| NODE_ENV             | Application mode (`development` / `production`)                         |
+| API_KEY_ENABLE       | Enable API key protection                                               |
+| API_KEY              | API key value for authentication                                        |
+| CORS_ORIGIN          | Allowed origin domain for API access (CORS)                             |
+| DB                   | Database type (`mysql` / `postgres`)                                    |
+| DB_HOST              | Database host address                                                   |
+| DB_USER              | Database username                                                       |
+| DB_PASS              | Database password                                                       |
+| DB_NAME              | Database name                                                           |
+| DB_PORT              | Database port number                                                    |
+| WEBHOOK_ENABLE       | Enable webhook notifications                                            |
+| WEBHOOK_URL          | Webhook target URL                                                      |
+| JWT_SECRET           | Secret key to generate JWT tokens                                       |
+| JWT_EXPIRATION       | JWT token expiration time (e.g., `1h`, `30m`)                           |
+| RATE_LIMIT_MAX       | Maximum number of requests before rate limiting                         |
+| RATE_LIMIT_WINDOW_MS | Rate limit window in milliseconds                                       |
+| REDIS_CACHE_ENABLE   | Enable Redis caching                                                    |
+| REDIS_TASK_ENABLE    | Enable Redis task queue                                                 |
+| REDIS_HOST           | Redis host address                                                      |
+| REDIS_PORT           | Redis port number                                                       |
+| REDIS_TTL            | Time-to-live (TTL) for Redis cache (in seconds)                         |
+| FILE_MAX_SIZE        | Maximum file upload size (in bytes)                                     |
+| FILE_UPLOAD_PATH     | Directory path for file uploads                                         |
+| FILE_ALLOWED_TYPES   | Allowed file types for upload                                           |
+| COMPRESSION_ENABLE   | Enable response compression                                             |
+| COMPRESSION_THRESHOLD| Minimum response size to be compressed                                  |
+| COMPRESSION_LEVEL    | Compression level (0-9)                                                 |
+| ANOMALY_ENABLED      | Enable anomaly detection for requests                                   |
+| ANOMALY_TIME         | Time interval for detecting anomalies (in milliseconds)                 |
+| ANOMALY_REQUEST      | Number of suspicious requests before being flagged as an anomaly        |
+| ANOMALY_URL_LENGTH   | Maximum URL length for anomaly detection                                |
+
+---
+
 ## 📊 Status Monitoring
 
 #### Endpoint
@@ -91,7 +131,7 @@ GET http://localhost:5000/api/v1/data/:key
 
 #### 📬 Postman Collection
 
-📥 Download & Import:  
+Download & Import:  
 [RESTful-API_Starter_Kit.postman_collection.json](./src/config/RESTful-API_Starter_Kit.postman_collection.json)
 
 
