@@ -17,7 +17,7 @@ router.post('/upload/:folderName', uploadFile);
 
 // User Route
 const userRoutes = require('./user.routes');
-router.use('/users', userRoutes);
+router.use('/auth', userRoutes);
 
 // Add more routes if needed
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Apr 2025 pada 11.24
+-- Waktu pembuatan: 21 Apr 2025 pada 03.25
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -41,7 +41,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `createdAt`, `updatedAt`) VALUES
-(1, 'John Doe', 'user@user.com', '$2b$10$P7IM3leCxfBMQA/GnNU.Qu.hqB.9Gjs8MYWsoin/jzbXLbuzsitiK', '2025-04-16 01:40:16', '2025-04-16 01:40:16');
+(1, 'John Doe', 'johndoe@example.com', '$2b$10$j9uGUUfr6Ku7WcnJ4L1rs.Q/7y1erIKab6ZR3UqFvsrywwPCD60kS', '2025-04-21 01:24:32', '2025-04-21 01:24:32');
 
 --
 -- Indexes for dumped tables

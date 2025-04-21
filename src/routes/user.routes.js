@@ -3,13 +3,11 @@ const router = express.Router();
 const userController = require('../controllers/user.controller');
 const authMiddleware = require('../middlewares/auth.middleware');
 
-// Route Register
+
 router.post('/register', userController.registerUser);
-
-// Route Login
 router.post('/login', userController.loginUser);
-
-// Route List Users
-router.get('/', authMiddleware, userController.getAllUsers);
+router.get('/users', authMiddleware, userController.getAllUsers);
+router.get('/profile', authMiddleware, userController.profileUsers);
+router.put('/profile', authMiddleware, userController.editUsers);
 
 module.exports = router;

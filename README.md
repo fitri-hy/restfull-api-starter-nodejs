@@ -73,13 +73,15 @@ GET http://localhost:5000/api/v1/data/:key
 
 ---
 
-## 👤 Example Case (Login, Register, Get User)
+## 👤 Example Case (Login, Register, Get All User, User Detail, Edit User Detail)
+
+> *For testing purposes, you can import the `sample.sql` sample file available in the `/src/config/sample.sql` directory.*
 
 ### Register
 
 #### Endpoint
 ```
-POST http://localhost:5000/api/v1/users/register
+POST http://localhost:5000/api/v1/auth/register
 ```
 
 #### Header Request (If using ApiKey)
@@ -102,9 +104,12 @@ POST http://localhost:5000/api/v1/users/register
 
 ```
 {
-   "id": 1,
-   "name": "John Doe",
-   "email": "johndoe@example.com"
+  "message": "Registration successful",
+  "user": {
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "password": "securepassword"
+  }
 }
 ```
 
@@ -113,7 +118,7 @@ POST http://localhost:5000/api/v1/users/register
 #### Endpoint
 
 ```
-POST http://localhost:5000/api/v1/users/login
+POST http://localhost:5000/api/v1/auth/login
 ```
 
 #### Header Request (If using ApiKey)
@@ -121,7 +126,6 @@ POST http://localhost:5000/api/v1/users/login
 | Key             | Value                           |
 |:----------------|:--------------------------------|
 | x-api-key       | my_secret_api_key               |
-
 
 #### Body Request
 
@@ -136,16 +140,17 @@ POST http://localhost:5000/api/v1/users/login
 
 ```
 {
+  "message": "Login successful",
   "token": "your_jwt_token_here"
 }
 ```
 
-### Get Users
+### All Users
 
 #### Endpoint
 
 ```
-GET http://localhost:5000/api/v1/users
+GET http://localhost:5000/api/v1/auth/users
 ```
 
 #### Header Request (If using ApiKey)
@@ -170,7 +175,86 @@ GET http://localhost:5000/api/v1/users
     "name": "John Doe",
     "email": "johndoe@example.com"
   }
+  ...
 ]
+```
+
+### Users Detail
+
+#### Endpoint
+
+```
+GET http://localhost:5000/api/v1/auth/profile
+```
+
+#### Header Request (If using ApiKey)
+
+| Key             | Value                           |
+|:----------------|:--------------------------------|
+| x-api-key       | my_secret_api_key               |
+
+
+#### Header Authorization:
+
+| Key             | Value                           |
+|:----------------|:--------------------------------|
+| Authorization   | Bearer `<your_jwt_token_here>`  |
+
+#### Response
+
+```
+{
+  "id": 1,
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "createdAt": "2025-04-21T00:42:41.000Z"
+}
+```
+
+### Users Edit
+
+#### Endpoint
+
+```
+PUT http://localhost:5000/api/v1/auth/profile
+```
+
+#### Header Request (If using ApiKey)
+
+| Key             | Value                           |
+|:----------------|:--------------------------------|
+| x-api-key       | my_secret_api_key               |
+
+
+#### Header Authorization:
+
+| Key             | Value                           |
+|:----------------|:--------------------------------|
+| Authorization   | Bearer `<your_jwt_token_here>`  |
+
+#### Body Request
+
+```
+{
+  "name": "John New",
+  "email": "Johnnew@example.com",
+  "password": "123456"
+}
+```
+
+#### Response
+
+```
+{
+    "message": "Profile updated successfully",
+    "user": {
+        "id": 1,
+        "name": "John New",
+        "email": "Johnnew@example.com",
+        "createdAt": "2025-04-21T01:13:14.000Z",
+        "updatedAt": "2025-04-21T01:13:45.000Z"
+    }
+}
 ```
 
 ---
