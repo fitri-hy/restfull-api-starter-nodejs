@@ -29,6 +29,18 @@ Starter Kit for building modern RESTful APIs with scalable 🏗️, modular 🧩
 
 ---
 
+## Quick Start
+
+```
+git clone https://github.com/fitri-hy/restfull-api-starter-nodejs.git
+cd restfull-api-starter-nodejs
+cp .env.example .env
+npm install
+npm run dev
+```
+
+---
+
 ## 📊 Status Monitoring
 
 #### Endpoint
@@ -76,6 +88,12 @@ GET http://localhost:5000/api/v1/data/:key
 ## 👤 Example Case (Login, Register, Get All User, User Detail, Edit User Detail)
 
 > *For testing purposes, you can import the `sample.sql` sample file available in the `/src/config/sample.sql` directory.*
+
+#### 📬 Postman Collection
+
+📥 Download & Import:  
+[RESTful-API_Starter_Kit.postman_collection.json](./src/config/RESTful-API_Starter_Kit.postman_collection.json)
+
 
 ### Register
 
